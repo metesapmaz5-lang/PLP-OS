@@ -1,0 +1,37 @@
+name: Build PLP OS 2.0 Ellie ISO
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Debian live-build
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            live-build \
+            debootstrap \
+            squashfs-tools \
+            xorriso \
+            grub-pc-bin \
+            grub-efi-amd64-bin \
+            mtools \
+            dosfstools
+
+      - name: Clean previous build
+        run: sudo lb clean --purge
+
+      - name: Build PLP OS ISO
+        run: sudo lb build
+
+      - name: Upload ISO Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PLP-OS-2.0-Ellie-ISO
+          path: "*.iso"
