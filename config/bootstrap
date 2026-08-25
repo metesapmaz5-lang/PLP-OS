@@ -1,76 +1,45 @@
-# config/bootstrap - options for live-build(7), bootstrap stage
+k#!/bin/sh
 
-# Select architecture to use
+# ==========================================================
+# PLP OS 2.0 "Ellie" Bootstrap Configuration
+# Debian 12 Bookworm
+# ==========================================================
+
+# Architecture
 LB_ARCHITECTURE="amd64"
 
-# Select distribution to use
+# Debian release
 LB_DISTRIBUTION="bookworm"
+LB_PARENT_DISTRIBUTION="bookworm"
 
-# Select parent distribution to use
-LB_PARENT_DISTRIBUTION=""
-
-# Select distribution to use in the chroot
-LB_DISTRIBUTION_CHROOT="bookworm"
-
-# Select parent distribution to use in the chroot
-LB_PARENT_DISTRIBUTION_CHROOT="bookworm"
-
-# Select distribution to use in the final image
-LB_DISTRIBUTION_BINARY="bookworm"
-
-# Select parent distribution to use in the final image
-LB_PARENT_DISTRIBUTION_BINARY="bookworm"
-
-# Select parent distribution for debian-installer to use
-LB_PARENT_DEBIAN_INSTALLER_DISTRIBUTION="bookworm"
-
-# Select archive areas to use
-LB_ARCHIVE_AREAS="main"
-
-# Select parent archive areas to use
-LB_PARENT_ARCHIVE_AREAS="main"
-
-# Set parent mirror to bootstrap from
-LB_PARENT_MIRROR_BOOTSTRAP="http://deb.debian.org/debian/"
-
-# Set parent mirror to fetch packages from
-LB_PARENT_MIRROR_CHROOT="http://deb.debian.org/debian/"
-
-# Set security parent mirror to fetch packages from
-LB_PARENT_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
-
-# Set parent mirror which ends up in the image
-LB_PARENT_MIRROR_BINARY="http://deb.debian.org/debian/"
-
-# Set security parent mirror which ends up in the image
-LB_PARENT_MIRROR_BINARY_SECURITY="http://security.debian.org/"
-
-# Set debian-installer parent mirror
-LB_PARENT_MIRROR_DEBIAN_INSTALLER="http://deb.debian.org/debian/"
-
-# Set mirror to bootstrap from
+# Mirrors
 LB_MIRROR_BOOTSTRAP="http://deb.debian.org/debian/"
-
-# Set mirror to fetch packages from
 LB_MIRROR_CHROOT="http://deb.debian.org/debian/"
-
-# Set security mirror to fetch packages from
-LB_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
-
-# Set mirror which ends up in the image
 LB_MIRROR_BINARY="http://deb.debian.org/debian/"
 
-# Set security mirror which ends up in the image
-LB_MIRROR_BINARY_SECURITY="http://security.debian.org/"
+# Security repository (FIXED)
+LB_MIRROR_CHROOT_SECURITY="http://deb.debian.org/debian-security/"
+LB_MIRROR_BINARY_SECURITY="http://deb.debian.org/debian-security/"
+LB_SECURITY_SUITE="bookworm-security"
 
-# Set debian-installer mirror
-LB_MIRROR_DEBIAN_INSTALLER="http://deb.debian.org/debian/"
+# Updates repository
+LB_MIRROR_CHROOT_UPDATES="http://deb.debian.org/debian/"
+LB_MIRROR_BINARY_UPDATES="http://deb.debian.org/debian/"
+LB_UPDATES_SUITE="bookworm-updates"
 
-# Set architectures to use foreign bootstrap
-LB_BOOTSTRAP_QEMU_ARCHITECTURE=""
+# Installer
+LB_DEBIAN_INSTALLER="live"
+LB_PARENT_DEBIAN_INSTALLER_DISTRIBUTION="bookworm"
 
-# Set packages to exclude during foreign bootstrap
-LB_BOOTSTRAP_QEMU_EXCLUDE=""
+# Image type
+LB_BINARY_IMAGES="iso-hybrid"
 
-# Set static qemu binary for foreign bootstrap
-LB_BOOTSTRAP_QEMU_STATIC=""
+# Archive areas
+LB_ARCHIVE_AREAS="main contrib non-free non-free-firmware"
+
+# Compression
+LB_CHROOT_FILESYSTEM="squashfs"
+LB_COMPRESSION="xz"
+
+# Boot options
+LB_BOOTAPPEND_LIVE="boot=live components quiet splash"
